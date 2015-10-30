@@ -21,6 +21,5 @@ public:
 	ResourceManager();
 	~ResourceManager();
 
-	GameObject loadObject(std::string path, Program program);
+	GameObject* loadObject(std::string path, Program program);
 };
-

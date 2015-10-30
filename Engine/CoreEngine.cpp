@@ -71,12 +71,11 @@ void CoreEngine::gameLoop()
 	program.addAttribute("in_tangent", 3, GL_FLOAT, GL_FALSE, offsetof(Vertex, tangent));
 	program.addAttribute("in_texCoord", 2, GL_FLOAT, GL_FALSE, offsetof(Vertex, texCoord));
 
-	GameObject object;
-
+	GameObject* object = resourceManager.loadObject("Nanosuit/nanosuit.obj", program);
 	
 	while (1)
 	{
-		//object.draw();
+		object->draw();
 		glfwSwapBuffers(p_window);
 	}
 }

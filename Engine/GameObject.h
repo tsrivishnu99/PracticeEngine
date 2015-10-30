@@ -21,6 +21,7 @@ public:
 	void draw();													// Draw call
 
 	GameObject* m_parent;
+	std::vector<GameObject*> m_child;
 	Transform m_transform;
-};
+} __declspec(align(16));
 

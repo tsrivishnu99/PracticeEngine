@@ -73,3 +73,12 @@ void Program::setAttributePointer()
 							(void*)p_attributeList[i].Offset);
 	}
 }
+
+Program Program::operator= (Program other)
+{
+	p_programID = other.p_programID;
+	p_numAttributes = other.p_numAttributes;
+	p_attributeList = other.p_attributeList;
+
+	return *this;
+}

@@ -1,6 +1,7 @@
 #pragma once
 #include "EngineClock.h"
 #include "Program.h"
+#include "ResourceManager.h"
 #include "GameObject.h"
 
 class CoreEngine
@@ -18,5 +19,7 @@ public:
 
 	void gameLoop();
 	void init(int width, int height, std::string Title);
+
+	ResourceManager resourceManager;
 };
 

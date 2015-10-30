@@ -25,10 +25,12 @@ public:
 	void attachShaders(Shader A[], int numberOfShaders);
 	void attachShader(Shader A);
 	void linkProgram();
-	void Program::addAttribute(const std::string& attributeName, GLuint size, GLenum type, GLenum normalize, int offset);
+	void addAttribute(const std::string& attributeName, GLuint size, GLenum type, GLenum normalize, int offset);
 	void setAttributePointer();
 
 	void UseProgram() const;
 	void unUseProgram() const;
+
+	Program operator= (Program other);
 };
 
