@@ -22,4 +22,3 @@ public:
 	glm::mat4 getTransformationMatrix();								// Computes the transformation matrix for the current position and orientation and returns it 
 
 };
-

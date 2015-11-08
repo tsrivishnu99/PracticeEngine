@@ -18,10 +18,10 @@ public:
 	
 	void setProgram(Program program);
 	void setMesh(Mesh m);
-	void draw();													// Draw call
+	void draw();//glm::mat4 &Transformation);													// Draw call
 
 	GameObject* m_parent;
 	std::vector<GameObject*> m_child;
 	Transform m_transform;
-} __declspec(align(16));
+};
 

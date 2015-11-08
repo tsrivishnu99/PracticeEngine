@@ -43,13 +43,16 @@ void Program::linkProgram()
 	glLinkProgram(p_programID);
 }
 
-void Program::UseProgram() const
+void Program::UseProgram()
 {
 	glUseProgram(p_programID);
+	setAttributePointer();
 	for (int i = 0; i < p_numAttributes; i++)
 	{
 		glEnableVertexAttribArray(i);
 	}
+
+	m_MVPLocation = glGetUniformLocation(p_programID, "MVP");
 }
 
 void Program::unUseProgram() const
@@ -63,9 +66,11 @@ void Program::unUseProgram() const
 
 void Program::setAttributePointer()
 {
+	GLuint loc;
 	for (int i = 0; i < p_numAttributes; i++)
 	{
-		glVertexAttribPointer(glGetAttribLocation(p_programID, p_attributeList[i].attributeName.c_str()), 
+		loc = glGetAttribLocation(p_programID, p_attributeList[i].attributeName.c_str());
+		glVertexAttribPointer(loc, 
 							p_attributeList[i].size,
 							p_attributeList[i].type,
 							p_attributeList[i].normalize,

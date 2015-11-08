@@ -21,16 +21,15 @@ public:
 	~Program();
 
 	GLuint getProgramID(){ return p_programID; };
-
 	void attachShaders(Shader A[], int numberOfShaders);
 	void attachShader(Shader A);
 	void linkProgram();
 	void addAttribute(const std::string& attributeName, GLuint size, GLenum type, GLenum normalize, int offset);
 	void setAttributePointer();
-
-	void UseProgram() const;
+	void UseProgram();
 	void unUseProgram() const;
-
 	Program operator= (Program other);
+
+	GLuint m_MVPLocation;
 };
 

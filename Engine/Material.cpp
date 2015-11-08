@@ -7,7 +7,7 @@ Material::Material() :m_textureID(0), m_type(DIFFUSE_MAP)
 
 Material::Material(aiString FILEPATH) : m_textureID(0), m_type(DIFFUSE_MAP)
 {
-	m_filePath = FILEPATH;
+	addTexture(FILEPATH);
 }
 
 
@@ -16,10 +16,20 @@ Material::~Material()
 	glDeleteSamplers(1, &m_textureID);
 }
 
+void Material::addTexture(aiString FILEPATH)
+{
+	int width, height;
+
+	unsigned char* image = SOIL_load_image(FILEPATH.C_Str(), &width, &height, 0, SOIL_LOAD_RGBA);
+
+	p_images.push_back(image);
+	p_width.push_back(width);
+	p_height.push_back(height);
+}
 
 bool Material::loadTexture(aiString FILEPATH)
 {
-	m_filePath = FILEPATH;
+	addTexture(FILEPATH);
 
 	return loadTexture();
 }
@@ -27,18 +37,16 @@ bool Material::loadTexture(aiString FILEPATH)
 bool Material::loadTexture()
 {
 	glGenTextures(1, &m_textureID);
-	glBindTexture(GL_TEXTURE_2D, m_textureID);
+	glBindTexture(GL_TEXTURE_2D_ARRAY, m_textureID);
 
-	int width, height;
+	int count = p_images.size();
 
-	unsigned char* image = SOIL_load_image(m_filePath.C_Str(), &width, &height, 0, SOIL_LOAD_RGBA);
+	glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, p_width[0], p_height[0], count,GL_CLAMP, GL_RGBA, GL_UNSIGNED_INT_8_8_8_8_REV, NULL);
 
-
-	// Using this image, we can call glTexImage2D to create a 2D texture. Parameters: target GL_TEXTURE_2D, level of detail (0 is base, x is xth mipmap reduction), internal format, 
-	// width, height, border (if we're drawing a border around the image), format of texel data (must match internal format), type of texel data, and a pointer to image data in memory.
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-
-	SOIL_free_image_data(image);
+	for (int i = 0; i < count; i++)
+	{
+		glTexSubImage3D(GL_TEXTURE_2D_ARRAY, i, 0, 0, 0, p_width[i], p_height[i], 1, GL_RGBA, GL_UNSIGNED_BYTE, p_images[i]);
+	}
 
 	// Sets texture parameters, given a target, symbolic name of the texture parameter, and a value for that parameter.
 	// Valid symbolic names are GL_TEXTURE_MIN_FILTER, GL_TEXTURE_MAG_FILTER, GL_TEXTURE_WRAP_S, or GL_TEXTURE_WRAP_T.
