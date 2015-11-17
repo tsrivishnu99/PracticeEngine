@@ -35,18 +35,18 @@ void Mesh::init(std::vector<Vertex> &vertices, std::vector<GLuint> &indices, Pro
 	glGenVertexArrays(1, &m_VertexArrayObjectID);
 	glBindVertexArray(m_VertexArrayObjectID);
 
-	glGenBuffers(1, &p_IndexBufferId);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, p_IndexBufferId);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), &indices[0], GL_STATIC_DRAW);
-
 	glGenBuffers(1, &p_VertexBufferId);
 	glBindBuffer(GL_ARRAY_BUFFER, p_VertexBufferId);
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), &vertices[0], GL_STATIC_DRAW);
 
-	glBindVertexArray(m_VertexArrayObjectID);
+	glGenBuffers(1, &p_IndexBufferId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, p_IndexBufferId);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), &indices[0], GL_STATIC_DRAW);
+
+	/*glBindVertexArray(m_VertexArrayObjectID);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, p_IndexBufferId);
 	glBindBuffer(GL_ARRAY_BUFFER, p_VertexBufferId);
-	
+	*/
 	program->setAttributePointer();
 
 	glBindVertexArray(0);
@@ -58,5 +58,10 @@ void Mesh::init(std::vector<Vertex> &vertices, std::vector<GLuint> &indices, Pro
 void Mesh::draw()
 {
 	glBindVertexArray(m_VertexArrayObjectID);
-	glDrawElements(GL_TRIANGLES, p_totalNumberOfVertices, GL_UNSIGNED_INT, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, p_IndexBufferId);
+	glDrawElements(GL_TRIANGLES, p_totalNumberOfVertices, GL_UNSIGNED_BYTE, 0);
+	glBindVertexArray(0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
 }

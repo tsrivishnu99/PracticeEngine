@@ -2,15 +2,19 @@
  
 layout(location = 0) in vec3 in_position;	// Get in a vec3 for position
 layout(location = 1) in vec3 in_normal;
-//layout(location = 2) in vec3 in_tangent;
-layout(location = 2) in vec2 in_texCoord;
+layout(location = 2) in vec3 in_tangent;
+layout(location = 3) in vec2 in_texCoord;
 
-out vec4 color;					// Our vec4 color variable containing r, g, b, a
+out vec4 frag_Color;					// Our vec4 color variable containing r, g, b, a
 
 uniform mat4 MVP;				// Our uniform MVP matrix to modify our position values
 
 void main(void)
 {
-	color = vec4(0,0,1,1);
+	vec3 normal = in_normal;
+	vec3 tangent = in_tangent;
+	vec2 texCoord = in_texCoord;
+
+	frag_Color = vec4(normal + tangent + vec3(texCoord,1.0f) ,1.0f) ;
 	gl_Position = MVP * vec4(in_position, 1.0f);
 }

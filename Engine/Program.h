@@ -4,6 +4,7 @@
 
 struct Attribute{
 	std::string attributeName;
+	GLuint loc;
 	GLuint size;
 	GLenum type;
 	GLenum normalize;

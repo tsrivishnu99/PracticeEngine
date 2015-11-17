@@ -33,6 +33,8 @@ void Program::addAttribute(const std::string& attributeName, GLuint size, GLenum
 	att.type = type;
 	att.normalize = normalize;
 	att.Offset = offset;
+	att.loc = glGetAttribLocation(p_programID, attributeName.c_str());
+
 	p_attributeList.push_back(att);
 
 	p_numAttributes++;
@@ -52,7 +54,11 @@ void Program::UseProgram()
 		glEnableVertexAttribArray(i);
 	}
 
-	m_MVPLocation = glGetUniformLocation(p_programID, "MVP");
+	GLuint i = glGetUniformLocation(p_programID, "MVP");
+	//m_MVPLocation = glGetUniformLocation(p_programID, "MVP");
+
+	if (i != (unsigned int) (-1))
+		m_MVPLocation = i;
 }
 
 void Program::unUseProgram() const
@@ -66,11 +72,10 @@ void Program::unUseProgram() const
 
 void Program::setAttributePointer()
 {
-	GLuint loc;
+	//GLuint loc;
 	for (int i = 0; i < p_numAttributes; i++)
 	{
-		loc = glGetAttribLocation(p_programID, p_attributeList[i].attributeName.c_str());
-		glVertexAttribPointer(loc, 
+		glVertexAttribPointer(p_attributeList[i].loc, 
 							p_attributeList[i].size,
 							p_attributeList[i].type,
 							p_attributeList[i].normalize,
