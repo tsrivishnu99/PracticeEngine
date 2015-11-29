@@ -16,5 +16,5 @@ void main(void)
 	vec2 texCoord = in_texCoord;
 
 	frag_Color = vec4(normal + tangent + vec3(texCoord,1.0f) ,1.0f) ;
-	gl_Position = MVP * vec4(in_position, 1.0f);
+	gl_Position = vec4(in_position, 1.0f);
 }

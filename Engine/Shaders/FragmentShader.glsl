@@ -6,5 +6,5 @@ in vec4 frag_Color;	// Take in a vec4 for color
  
 void main(void)
 {
-	out_color = frag_Color; // Set our out_color equal to our in color, basically making this a pass-through shader.
+	out_color = vec4(1.0f,0.0f,0.0f,1.0f);//frag_Color; // Set our out_color equal to our in color, basically making this a pass-through shader.
 }

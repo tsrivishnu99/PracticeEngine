@@ -157,7 +157,33 @@ GameObject* ResourceManager::loadObject(std::string path, Program program)
 
 	GameObject* object = new GameObject;//(GameObject*) _mm_malloc(sizeof(GameObject),16);
 	
-	Assimp::Importer import;
+	//Debug shit
+	//=====================================================================================
+
+	Mesh *mesh = new Mesh();
+
+	std::vector<Vertex> vertices;
+	Vertex a;
+	a.position = glm::vec3(1.0f, 0.0f, 0.0f);
+	a.normal = glm::vec3(1);
+	a.tangent = glm::vec3(1);
+	a.texCoord = glm::vec2(1);
+
+	vertices.push_back(a);
+	a.position = glm::vec3(0.0f, 1.0f, 0.0f);
+	vertices.push_back(a);
+	a.position = glm::vec3(-1.0f, 0.0f, 0.0f);
+	vertices.push_back(a);
+
+	std::vector<GLuint> indices = { 0, 1, 2 };
+
+	mesh->init(vertices, indices, &program);
+
+	object->setMesh(*mesh);
+	//=====================================================================================
+
+
+	/*Assimp::Importer import;
 
 	const aiScene* scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
 
@@ -166,9 +192,10 @@ GameObject* ResourceManager::loadObject(std::string path, Program program)
 		std::cout << "ERROR::ASSIMP::" << import.GetErrorString() << std::endl;
 		return nullptr;
 	}
+	*/
 
 	object->setProgram(program);
-	processNode(scene->mRootNode, scene, object);
+	//processNode(scene->mRootNode, scene, object);
 
 	ptr_gameObjects.push_back(object);
 	return (object);

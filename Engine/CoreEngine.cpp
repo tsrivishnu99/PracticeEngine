@@ -38,21 +38,8 @@ void CoreEngine::init(int width, int height, std::string Title)
 
 	//glEnable(GL_CULL_FACE);
 
-	// Enables blending, which we will use for Alpha Blending our texture.
-	// Basically, all color data for pixels has 4 floats, RGB is straightforward. It's just the value of Red, Green, and Blue. The fourth value is A, for Alpha. Alpha is the 
-	// transparency value, basically determining that 1.0 means it is fully visible, and 0.0 is invisible, meaning 0.5 is halfway see-through. The sample texture we are using 
-	// has transparency, so we are enabling blending to allow that transparency to be visible in our engine (otherwise, it will just be rendered black wherever it is transparent).
-	// Note that this can have unwanted effects in other applications, and only certain file types actually include transparency (such as PNG).
 	glEnable(GL_BLEND);
-
-	// The glBlendFunc controls how the blending actually occurs. This particular setting modifies the incoming color by its alpha value, and then modifies the destination color by 
-	// one minus the alpha value of the incoming color. Then the two are summed up and displayed.
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	// Determines the interpretation of polygons for rasterization. The first parameter, face, determines which polygons the mode applies to.
-	// The face can be either GL_FRONT, GL_BACK, or GL_FRONT_AND_BACK
-	// The mode determines how the polygons will be rasterized. GL_POINT will draw points at each vertex, GL_LINE will draw lines between the vertices, and 
-	// GL_FILL will fill the area inside those lines.
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
@@ -73,7 +60,7 @@ void CoreEngine::gameLoop()
 
 	GameObject* object = resourceManager.loadObject("Nanosuit/nanosuit.obj", program);
 	
-	object->m_transform.m_position = glm::vec3(0, 0, -10.0f);
+	object->m_transform.m_position = glm::vec3(0, 0, 10.0f);
 
 	while (1)
 	{
