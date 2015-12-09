@@ -1,6 +1,5 @@
 #include "CoreEngine.h"
 
-
 CoreEngine::CoreEngine()
 {
 }
@@ -13,7 +12,7 @@ CoreEngine::~CoreEngine()
 void CoreEngine::init(int width, int height, std::string Title)
 {
 	glfwInit();
-
+	
 	// Creates a window given (width, height, title, monitorPtr, windowPtr).
 	// Don't worry about the last two, as they have to do with controlling which monitor to display on and having a reference to other windows. Leaving them as nullptr is fine.
 	p_window = glfwCreateWindow(width, height, Title.c_str(), nullptr, nullptr);
@@ -53,10 +52,11 @@ void CoreEngine::gameLoop()
 	program.attachShader(fragmentShader);
 	program.linkProgram();
 
-	program.addAttribute("in_position", 3, GL_FLOAT, GL_FALSE, offsetof(Vertex, position));
-	program.addAttribute("in_normal", 3, GL_FLOAT, GL_FALSE, offsetof(Vertex, normal));
-	program.addAttribute("in_tangent", 3, GL_FLOAT, GL_FALSE, offsetof(Vertex, tangent));
-	program.addAttribute("in_texCoord", 2, GL_FLOAT, GL_FALSE, offsetof(Vertex, texCoord));
+	
+	program.addAttribute("in_position", 3, GL_FLOAT, GL_FALSE, offsetof(Vertex, position),0);
+	program.addAttribute("in_normal", 3, GL_FLOAT, GL_FALSE, offsetof(Vertex, normal),1);
+	program.addAttribute("in_tangent", 3, GL_FLOAT, GL_FALSE, offsetof(Vertex, tangent),2);
+	program.addAttribute("in_texCoord", 2, GL_FLOAT, GL_FALSE, offsetof(Vertex, texCoord),3);
 
 	GameObject* object = resourceManager.loadObject("Nanosuit/nanosuit.obj", program);
 	
