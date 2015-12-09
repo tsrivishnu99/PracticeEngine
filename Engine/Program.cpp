@@ -27,6 +27,7 @@ void Program::attachShader(Shader A)
 
 void Program::addAttribute(const std::string& attributeName, GLuint size, GLenum type, GLenum normalize, int offset, int shaderPosition)
 {
+	glUseProgram(p_programID);
 	Attribute att;
 	att.attributeName = attributeName;
 	att.size = size;
