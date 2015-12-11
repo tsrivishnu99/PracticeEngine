@@ -80,6 +80,17 @@ void CoreEngine::gameLoop()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0f,0.3f,0.3f,1.0f);
 		object->draw();
+		//glColor3f(1.0f, 0.0f, 0.0f);
+		
+		//glLineWidth(5.0f);
+	
+		/*
+		glPointSize(10.0f);
+		glBegin(GL_POINTS);
+		glVertex2f(1.0f, 0.0f);
+		glEnd();
+		*/
+	
 		glfwSwapBuffers(p_window);
 		glfwPollEvents();
 	}

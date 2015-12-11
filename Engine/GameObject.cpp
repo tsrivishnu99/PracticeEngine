@@ -41,8 +41,9 @@ void GameObject::draw()// glm::mat4 &Transformation)
 	glUniformMatrix4fv(p_program.m_MVPLocation, 1, GL_FALSE, glm::value_ptr(M));
 
 	for (GLuint i = 0; i < p_mesh.size(); i++)
-		p_mesh[i].draw();
+		p_mesh[i].draw(&p_program);
 
+	p_program.unUseProgram();
 	for (GLuint i = 0; i < m_child.size(); i++)
 	{
 		m_child[i]->draw();

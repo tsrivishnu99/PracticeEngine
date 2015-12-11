@@ -55,13 +55,14 @@ void Mesh::init(std::vector<Vertex> &vertices, std::vector<GLuint> &indices, Pro
 	//Send the data to GPU and set up the VAO
 }
 
-void Mesh::draw()
+void Mesh::draw(Program *program)
 {
-	glBindVertexArray(m_VertexArrayObjectID);
-	//glBindBuffer(GL_ARRAY_BUFFER, p_VertexBufferId);
-	//glDrawArrays(GL_TRIANGLES, 0, p_totalNumberOfVertices);
+	//glBindVertexArray(m_VertexArrayObjectID);
+	glBindBuffer(GL_ARRAY_BUFFER, p_VertexBufferId);
+	program->UseProgram();
+	glDrawArrays(GL_TRIANGLES, 0, p_totalNumberOfVertices);
 	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, p_IndexBufferId);
-	glDrawElements(GL_TRIANGLES, p_totalNumberOfVertices, GL_UNSIGNED_BYTE, 0);
+	//glDrawElements(GL_TRIANGLES, p_totalNumberOfVertices, GL_UNSIGNED_BYTE, 0);
 	glBindVertexArray(0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

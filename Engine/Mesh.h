@@ -16,7 +16,7 @@ public:
 	Mesh(const Mesh &copy);
 
 	void init(std::vector<Vertex> &vertices, std::vector<GLuint> &indices, Program* program);
-	void draw();
+	void draw(Program *program);
 	void addMaterials(std::vector<Material> textures);
 
 	std::vector<Material> m_material;
