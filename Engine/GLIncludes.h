@@ -20,13 +20,12 @@
 #include "glm\gtx\rotate_vector.hpp"
 
 #define PI 3.14159265
-#define BUFFER_OFFSET(i) ((char*)NULL + i)
 
 struct Vertex
 {
 	glm::vec3 position;
-	glm::vec3 normal;
-	glm::vec3 tangent;
-	glm::vec2 texCoord;
+	//glm::vec3 normal;
+	//glm::vec3 tangent;
+	//glm::vec2 texCoord;
 };
 #endif _GL_INCLUDES_H

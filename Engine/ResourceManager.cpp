@@ -43,90 +43,90 @@ Mesh ResourceManager::processMesh(aiMesh* mesh, const aiScene* scene)
 {
 	Mesh* gameMesh = new Mesh;
 
-	std::vector<Vertex> vertices;
-	std::vector<GLuint> indices;
-	std::vector<Material> textures;
+	//std::vector<Vertex> vertices;
+	//std::vector<GLuint> indices;
+	//std::vector<Material> textures;
 
-	if (mesh->mTextureCoords[0])
-	{
-		if (mesh->mTangents != nullptr)
-		{
-			for (GLuint i = 0; i < mesh->mNumVertices; i++)
-			{
-				Vertex vertex;
-				vertex.position = glm::vec3(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z);
-				vertex.normal = glm::vec3(mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z);
-				vertex.tangent = glm::vec3(mesh->mTangents[i].x, mesh->mTangents[i].y, mesh->mTangents[i].z);
-				vertex.texCoord = glm::vec2(mesh->mTextureCoords[0][i].x, mesh->mTextureCoords[0][i].y);
+	//if (mesh->mTextureCoords[0])
+	//{
+	//	if (mesh->mTangents != nullptr)
+	//	{
+	//		for (GLuint i = 0; i < mesh->mNumVertices; i++)
+	//		{
+	//			Vertex vertex;
+	//			vertex.position = glm::vec3(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z);
+	//			vertex.normal = glm::vec3(mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z);
+	//			vertex.tangent = glm::vec3(mesh->mTangents[i].x, mesh->mTangents[i].y, mesh->mTangents[i].z);
+	//			vertex.texCoord = glm::vec2(mesh->mTextureCoords[0][i].x, mesh->mTextureCoords[0][i].y);
 
-				vertices.push_back(vertex);
-			}
-		}
-		else
-		{
-			for (GLuint i = 0; i < mesh->mNumVertices; i++)
-			{
-				Vertex vertex;
-				vertex.position = glm::vec3(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z);
-				vertex.normal = glm::vec3(mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z);
-				vertex.tangent = glm::vec3(0.0f);
-				vertex.texCoord = glm::vec2(mesh->mTextureCoords[0][i].x, mesh->mTextureCoords[0][i].y);
+	//			vertices.push_back(vertex);
+	//		}
+	//	}
+	//	else
+	//	{
+	//		for (GLuint i = 0; i < mesh->mNumVertices; i++)
+	//		{
+	//			Vertex vertex;
+	//			vertex.position = glm::vec3(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z);
+	//			vertex.normal = glm::vec3(mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z);
+	//			vertex.tangent = glm::vec3(0.0f);
+	//			vertex.texCoord = glm::vec2(mesh->mTextureCoords[0][i].x, mesh->mTextureCoords[0][i].y);
 
-				vertices.push_back(vertex);
-			}
-		}
-	}
-	else
-	{
-		if (mesh->mTangents != nullptr)
-		{
-			for (GLuint i = 0; i < mesh->mNumVertices; i++)
-			{
-				Vertex vertex;
-				vertex.position = glm::vec3(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z);
-				vertex.normal = glm::vec3(mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z);
-				vertex.tangent = glm::vec3(mesh->mTangents[i].x, mesh->mTangents[i].y, mesh->mTangents[i].z);
-				vertex.texCoord = glm::vec2(0.0f);
+	//			vertices.push_back(vertex);
+	//		}
+	//	}
+	//}
+	//else
+	//{
+	//	if (mesh->mTangents != nullptr)
+	//	{
+	//		for (GLuint i = 0; i < mesh->mNumVertices; i++)
+	//		{
+	//			Vertex vertex;
+	//			vertex.position = glm::vec3(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z);
+	//			vertex.normal = glm::vec3(mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z);
+	//			vertex.tangent = glm::vec3(mesh->mTangents[i].x, mesh->mTangents[i].y, mesh->mTangents[i].z);
+	//			vertex.texCoord = glm::vec2(0.0f);
 
-				vertices.push_back(vertex);
-			}
-		}
-		else
-		{
-			for (GLuint i = 0; i < mesh->mNumVertices; i++)
-			{
-				Vertex vertex;
-				vertex.position = glm::vec3(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z);
-				vertex.normal = glm::vec3(mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z);
-				vertex.tangent = glm::vec3(0.0f);
-				vertex.texCoord = glm::vec2(0.0f);
+	//			vertices.push_back(vertex);
+	//		}
+	//	}
+	//	else
+	//	{
+	//		for (GLuint i = 0; i < mesh->mNumVertices; i++)
+	//		{
+	//			Vertex vertex;
+	//			vertex.position = glm::vec3(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z);
+	//			vertex.normal = glm::vec3(mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z);
+	//			vertex.tangent = glm::vec3(0.0f);
+	//			vertex.texCoord = glm::vec2(0.0f);
 
-				vertices.push_back(vertex);
-			}
-		}
-	}
+	//			vertices.push_back(vertex);
+	//		}
+	//	}
+	//}
 
-	for (GLuint i = 0; i < mesh->mNumFaces; i++)
-	{
-		aiFace face = mesh->mFaces[i];
-		for (GLuint j = 0; j < face.mNumIndices; j++)
-			indices.push_back(face.mIndices[j]);
-	}
-	
-	gameMesh->init(vertices, indices, &p_programs.back());
+	//for (GLuint i = 0; i < mesh->mNumFaces; i++)
+	//{
+	//	aiFace face = mesh->mFaces[i];
+	//	for (GLuint j = 0; j < face.mNumIndices; j++)
+	//		indices.push_back(face.mIndices[j]);
+	//}
+	//
+	//gameMesh->init(vertices, indices, &p_programs.back());
 
-	//Process Material
-	if (mesh->mMaterialIndex >= 0)
-	{
-		aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
-		std::vector<Material> diffuseMaps = loadTextures(material, aiTextureType_DIFFUSE, DIFFUSE_MAP);
-		gameMesh->m_material = diffuseMaps;
-		std::vector<Material> specularMaps = loadTextures(material, aiTextureType_SPECULAR, SPECULAR_MAP);
-		gameMesh->addMaterials(specularMaps);
-		std::vector<Material> NormalMaps = loadTextures(material, aiTextureType_NORMALS, NORMAL_MAP);
-		gameMesh->addMaterials(NormalMaps);
+	////Process Material
+	//if (mesh->mMaterialIndex >= 0)
+	//{
+	//	aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+	//	std::vector<Material> diffuseMaps = loadTextures(material, aiTextureType_DIFFUSE, DIFFUSE_MAP);
+	//	gameMesh->m_material = diffuseMaps;
+	//	std::vector<Material> specularMaps = loadTextures(material, aiTextureType_SPECULAR, SPECULAR_MAP);
+	//	gameMesh->addMaterials(specularMaps);
+	//	std::vector<Material> NormalMaps = loadTextures(material, aiTextureType_NORMALS, NORMAL_MAP);
+	//	gameMesh->addMaterials(NormalMaps);
 
-	}
+	//}
 
 	return (*gameMesh);
 }
@@ -164,15 +164,15 @@ GameObject* ResourceManager::loadObject(std::string path, Program program)
 
 	std::vector<Vertex> vertices;
 	Vertex a;
-	a.position = glm::vec3(1.0f, 0.0f, 0.0f);
-	a.normal = glm::vec3(1);
+	a.position = glm::vec3(1.0f, 0.0f, -0.5f);
+	/*a.normal = glm::vec3(1);
 	a.tangent = glm::vec3(1);
-	a.texCoord = glm::vec2(1);
+	a.texCoord = glm::vec2(1);*/
 
 	vertices.push_back(a);
-	a.position = glm::vec3(0.0f, 1.0f, 0.0f);
+	a.position = glm::vec3(0.0f, 1.0f, -0.5f);
 	vertices.push_back(a);
-	a.position = glm::vec3(-1.0f, 0.0f, 0.0f);
+	a.position = glm::vec3(-1.0f, 0.0f, -0.5f);
 	vertices.push_back(a);
 
 	std::vector<GLuint> indices = { 0, 1, 2 };

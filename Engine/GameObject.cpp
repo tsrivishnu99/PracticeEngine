@@ -30,10 +30,7 @@ void GameObject::setMesh(Mesh m)
 void GameObject::draw()// glm::mat4 &Transformation)
 {
 	p_program.UseProgram();
-	/*
-		Entire draw call need to addressed here
-	*/
-
+	
 	glm::mat4 M = m_transform.getTransformationMatrix();
 	//glm::mat4 model = glm::translate(glm::vec3(0.0f, 0.0f, -10.0f));//M * Transformation;
 	//glm::mat4 view = glm::lookAt(glm::vec3(0.0f, 0.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
