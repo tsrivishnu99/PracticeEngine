@@ -164,15 +164,16 @@ GameObject* ResourceManager::loadObject(std::string path, Program program)
 
 	std::vector<Vertex> vertices;
 	Vertex a;
-	a.position = glm::vec3(1.0f, 0.0f, -0.5f);
-	/*a.normal = glm::vec3(1);
-	a.tangent = glm::vec3(1);
-	a.texCoord = glm::vec2(1);*/
+	a.position = glm::vec3(0.95f, 0.0f, -0.5f);
+	a.normal = glm::vec3(0.0f,0.25f,0.0f);
+	//a.tangent = glm::vec3(0.4);
+	//a.texCoord = glm::vec2(0.2);
 
 	vertices.push_back(a);
-	a.position = glm::vec3(0.0f, 1.0f, -0.5f);
+	a.position = glm::vec3(-0.5f, 0.7f, -0.5f);
+	a.normal = glm::vec3(1.0f,0.0f,0.0f);
 	vertices.push_back(a);
-	a.position = glm::vec3(-1.0f, 0.0f, -0.5f);
+	a.position = glm::vec3(-0.35f, -0.5f, -0.5f);
 	vertices.push_back(a);
 
 	std::vector<GLuint> indices = { 0, 1, 2 };

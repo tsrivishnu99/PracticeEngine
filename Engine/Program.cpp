@@ -34,8 +34,8 @@ void Program::addAttribute(const std::string& attributeName, GLuint size, GLenum
 	att.type = type;
 	att.normalize = normalize;
 	att.Offset = offset;
-	att.loc = shaderPosition;
-	glBindAttribLocation(p_programID, shaderPosition, attributeName.c_str());
+	//att.loc = shaderPosition;
+	//glBindAttribLocation(p_programID, shaderPosition, attributeName.c_str());
 	att.loc = glGetAttribLocation(p_programID, attributeName.c_str());
 
 	p_attributeList.push_back(att);

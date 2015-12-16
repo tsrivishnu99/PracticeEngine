@@ -57,9 +57,9 @@ void Mesh::init(std::vector<Vertex> &vertices, std::vector<GLuint> &indices, Pro
 
 void Mesh::draw(Program *program)
 {
-	//glBindVertexArray(m_VertexArrayObjectID);
-	glBindBuffer(GL_ARRAY_BUFFER, p_VertexBufferId);
-	program->UseProgram();
+	glBindVertexArray(m_VertexArrayObjectID);
+	//glBindBuffer(GL_ARRAY_BUFFER, p_VertexBufferId);
+	//program->UseProgram();
 	glDrawArrays(GL_TRIANGLES, 0, p_totalNumberOfVertices);
 	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, p_IndexBufferId);
 	//glDrawElements(GL_TRIANGLES, p_totalNumberOfVertices, GL_UNSIGNED_BYTE, 0);

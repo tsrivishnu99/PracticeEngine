@@ -40,13 +40,13 @@ void CoreEngine::init(int width, int height, std::string Title)
 
 	glfwSetKeyCallback(p_window, key_callback);
 
-	glFrontFace(GL_CW);
+	glFrontFace(GL_CCW);
 
-	//glEnable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);
 
 	//glEnable(GL_BLEND);
 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 
@@ -61,7 +61,7 @@ void CoreEngine::gameLoop()
 	program.linkProgram();
 	
 	program.addAttribute("in_position", 3, GL_FLOAT, GL_FALSE, offsetof(Vertex, position),0);
-	//program.addAttribute("in_normal", 3, GL_FLOAT, GL_FALSE, offsetof(Vertex, normal),1);
+	program.addAttribute("in_normal", 3, GL_FLOAT, GL_FALSE, offsetof(Vertex, normal),1);
 	//program.addAttribute("in_tangent", 3, GL_FLOAT, GL_FALSE, offsetof(Vertex, tangent),2);
 	//program.addAttribute("in_texCoord", 2, GL_FLOAT, GL_FALSE, offsetof(Vertex, texCoord),3);
 
